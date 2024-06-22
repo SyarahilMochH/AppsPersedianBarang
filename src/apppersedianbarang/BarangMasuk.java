@@ -33,7 +33,6 @@ public class BarangMasuk extends javax.swing.JFrame {
         btn_minimize = new javax.swing.JButton();
         tx_idtransaksi = new javax.swing.JTextField();
         jdc_tanggalmasuk = new com.toedter.calendar.JDateChooser();
-        tx_tanggalmasuk = new javax.swing.JTextField();
         tx_idbarang = new javax.swing.JTextField();
         tx_namabarang = new javax.swing.JTextField();
         tx_satuanbarang = new javax.swing.JTextField();
@@ -42,6 +41,20 @@ public class BarangMasuk extends javax.swing.JFrame {
         tx_stockbarangmasuk = new javax.swing.JTextField();
         tx_totalstockbarang = new javax.swing.JTextField();
         tx_hargabarang = new javax.swing.JTextField();
+        tx_caribarang = new javax.swing.JTextField();
+        tx_barangmasuk = new javax.swing.JTextField();
+        tx_idbarang1 = new javax.swing.JTextField();
+        tx_idtransaksi1 = new javax.swing.JTextField();
+        tx_totaldata = new javax.swing.JTextField();
+        tx_tanggalakhirlbarang = new javax.swing.JTextField();
+        tx_tanggalawalbarang = new javax.swing.JTextField();
+        btn_reset = new javax.swing.JButton();
+        btn_update = new javax.swing.JButton();
+        btn_delete = new javax.swing.JButton();
+        btn_tambahdata = new javax.swing.JButton();
+        btn_idtransaksi = new javax.swing.JButton();
+        btn_caridata = new javax.swing.JButton();
+        btn_printdata = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -96,7 +109,7 @@ public class BarangMasuk extends javax.swing.JFrame {
 
         tx_idtransaksi.setBackground(java.awt.Color.lightGray);
         tx_idtransaksi.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        tx_idtransaksi.setBorder(null);
+        tx_idtransaksi.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
         tx_idtransaksi.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 tx_idtransaksiFocusGained(evt);
@@ -110,26 +123,11 @@ public class BarangMasuk extends javax.swing.JFrame {
         getContentPane().add(tx_idtransaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, 250, 50));
 
         jdc_tanggalmasuk.setBackground(java.awt.Color.lightGray);
-        getContentPane().add(jdc_tanggalmasuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 250, 40));
-
-        tx_tanggalmasuk.setBackground(java.awt.Color.lightGray);
-        tx_tanggalmasuk.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        tx_tanggalmasuk.setBorder(null);
-        tx_tanggalmasuk.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                tx_tanggalmasukFocusGained(evt);
-            }
-        });
-        tx_tanggalmasuk.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tx_tanggalmasukActionPerformed(evt);
-            }
-        });
-        getContentPane().add(tx_tanggalmasuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 250, 40));
+        getContentPane().add(jdc_tanggalmasuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 290, 230, 40));
 
         tx_idbarang.setBackground(java.awt.Color.lightGray);
         tx_idbarang.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        tx_idbarang.setBorder(null);
+        tx_idbarang.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
         tx_idbarang.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 tx_idbarangFocusGained(evt);
@@ -144,7 +142,7 @@ public class BarangMasuk extends javax.swing.JFrame {
 
         tx_namabarang.setBackground(java.awt.Color.lightGray);
         tx_namabarang.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        tx_namabarang.setBorder(null);
+        tx_namabarang.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
         tx_namabarang.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 tx_namabarangFocusGained(evt);
@@ -155,11 +153,11 @@ public class BarangMasuk extends javax.swing.JFrame {
                 tx_namabarangActionPerformed(evt);
             }
         });
-        getContentPane().add(tx_namabarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 400, 250, 40));
+        getContentPane().add(tx_namabarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 390, 250, 50));
 
         tx_satuanbarang.setBackground(java.awt.Color.lightGray);
         tx_satuanbarang.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        tx_satuanbarang.setBorder(null);
+        tx_satuanbarang.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
         tx_satuanbarang.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 tx_satuanbarangFocusGained(evt);
@@ -174,7 +172,7 @@ public class BarangMasuk extends javax.swing.JFrame {
 
         tx_gudangbarang.setBackground(java.awt.Color.lightGray);
         tx_gudangbarang.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        tx_gudangbarang.setBorder(null);
+        tx_gudangbarang.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
         tx_gudangbarang.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 tx_gudangbarangFocusGained(evt);
@@ -185,11 +183,11 @@ public class BarangMasuk extends javax.swing.JFrame {
                 tx_gudangbarangActionPerformed(evt);
             }
         });
-        getContentPane().add(tx_gudangbarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 510, 250, 40));
+        getContentPane().add(tx_gudangbarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 500, 250, 50));
 
         tx_stockbarang.setBackground(java.awt.Color.lightGray);
         tx_stockbarang.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        tx_stockbarang.setBorder(null);
+        tx_stockbarang.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
         tx_stockbarang.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 tx_stockbarangFocusGained(evt);
@@ -200,11 +198,11 @@ public class BarangMasuk extends javax.swing.JFrame {
                 tx_stockbarangActionPerformed(evt);
             }
         });
-        getContentPane().add(tx_stockbarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 570, -1, 40));
+        getContentPane().add(tx_stockbarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 560, 70, 50));
 
         tx_stockbarangmasuk.setBackground(java.awt.Color.lightGray);
         tx_stockbarangmasuk.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        tx_stockbarangmasuk.setBorder(null);
+        tx_stockbarangmasuk.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
         tx_stockbarangmasuk.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 tx_stockbarangmasukFocusGained(evt);
@@ -219,7 +217,7 @@ public class BarangMasuk extends javax.swing.JFrame {
 
         tx_totalstockbarang.setBackground(java.awt.Color.lightGray);
         tx_totalstockbarang.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        tx_totalstockbarang.setBorder(null);
+        tx_totalstockbarang.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
         tx_totalstockbarang.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 tx_totalstockbarangFocusGained(evt);
@@ -230,11 +228,11 @@ public class BarangMasuk extends javax.swing.JFrame {
                 tx_totalstockbarangActionPerformed(evt);
             }
         });
-        getContentPane().add(tx_totalstockbarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 620, 250, 40));
+        getContentPane().add(tx_totalstockbarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 620, 250, 50));
 
         tx_hargabarang.setBackground(java.awt.Color.lightGray);
         tx_hargabarang.setFont(new java.awt.Font("Montserrat", 0, 14)); // NOI18N
-        tx_hargabarang.setBorder(null);
+        tx_hargabarang.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 10));
         tx_hargabarang.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 tx_hargabarangFocusGained(evt);
@@ -245,10 +243,120 @@ public class BarangMasuk extends javax.swing.JFrame {
                 tx_hargabarangActionPerformed(evt);
             }
         });
-        getContentPane().add(tx_hargabarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 680, 250, 40));
+        getContentPane().add(tx_hargabarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 670, 250, 50));
+
+        tx_caribarang.setBorder(null);
+        getContentPane().add(tx_caribarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 110, 200, 30));
+
+        tx_barangmasuk.setBorder(null);
+        getContentPane().add(tx_barangmasuk, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 110, 90, 30));
+
+        tx_idbarang1.setBorder(null);
+        getContentPane().add(tx_idbarang1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 110, 90, 30));
+
+        tx_idtransaksi1.setBorder(null);
+        tx_idtransaksi1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tx_idtransaksi1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(tx_idtransaksi1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 110, 90, 30));
+
+        tx_totaldata.setBorder(null);
+        getContentPane().add(tx_totaldata, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 110, 70, 30));
+
+        tx_tanggalakhirlbarang.setBorder(null);
+        getContentPane().add(tx_tanggalakhirlbarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 730, 190, 20));
+
+        tx_tanggalawalbarang.setBorder(null);
+        getContentPane().add(tx_tanggalawalbarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 730, 180, 20));
+
+        btn_reset.setBackground(new java.awt.Color(0,0,0,1));
+        btn_reset.setBorder(null);
+        btn_reset.setBorderPainted(false);
+        btn_reset.setContentAreaFilled(false);
+        btn_reset.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_reset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_resetActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_reset, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 60, 20));
+
+        btn_update.setBackground(new java.awt.Color(0,0,0,1));
+        btn_update.setBorder(null);
+        btn_update.setBorderPainted(false);
+        btn_update.setContentAreaFilled(false);
+        btn_update.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_updateActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_update, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, 60, 20));
+
+        btn_delete.setBackground(new java.awt.Color(0,0,0,1));
+        btn_delete.setBorder(null);
+        btn_delete.setBorderPainted(false);
+        btn_delete.setContentAreaFilled(false);
+        btn_delete.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_deleteActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 60, 20));
+
+        btn_tambahdata.setBackground(new java.awt.Color(0,0,0,1));
+        btn_tambahdata.setBorder(null);
+        btn_tambahdata.setBorderPainted(false);
+        btn_tambahdata.setContentAreaFilled(false);
+        btn_tambahdata.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_tambahdata.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_tambahdataActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_tambahdata, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 60, 20));
+
+        btn_idtransaksi.setBackground(new java.awt.Color(0,0,0,1));
+        btn_idtransaksi.setBorder(null);
+        btn_idtransaksi.setBorderPainted(false);
+        btn_idtransaksi.setContentAreaFilled(false);
+        btn_idtransaksi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_idtransaksi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_idtransaksiActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_idtransaksi, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 70, 20));
+
+        btn_caridata.setBackground(new java.awt.Color(0,0,0,1));
+        btn_caridata.setBorder(null);
+        btn_caridata.setBorderPainted(false);
+        btn_caridata.setContentAreaFilled(false);
+        btn_caridata.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_caridata.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_caridataActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_caridata, new org.netbeans.lib.awtextra.AbsoluteConstraints(1140, 720, 120, 30));
+
+        btn_printdata.setBackground(new java.awt.Color(0,0,0,1));
+        btn_printdata.setBorder(null);
+        btn_printdata.setBorderPainted(false);
+        btn_printdata.setContentAreaFilled(false);
+        btn_printdata.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_printdata.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_printdataActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btn_printdata, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 720, 120, 30));
 
         jLabel1.setBackground(java.awt.Color.lightGray);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bg/2.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bg/BG_Barang Masuk.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, -1, -1));
 
         pack();
@@ -280,14 +388,6 @@ public class BarangMasuk extends javax.swing.JFrame {
     private void tx_idtransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tx_idtransaksiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tx_idtransaksiActionPerformed
-
-    private void tx_tanggalmasukFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tx_tanggalmasukFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tx_tanggalmasukFocusGained
-
-    private void tx_tanggalmasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tx_tanggalmasukActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tx_tanggalmasukActionPerformed
 
     private void tx_idbarangFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tx_idbarangFocusGained
         // TODO add your handling code here:
@@ -364,6 +464,38 @@ public class BarangMasuk extends javax.swing.JFrame {
     this.setLocation(x - xx, y - xy);
     }//GEN-LAST:event_formMouseDragged
 
+    private void btn_idtransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_idtransaksiActionPerformed
+
+    }//GEN-LAST:event_btn_idtransaksiActionPerformed
+
+    private void btn_tambahdataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_tambahdataActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_tambahdataActionPerformed
+
+    private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_deleteActionPerformed
+
+    private void btn_updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_updateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_updateActionPerformed
+
+    private void btn_resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_resetActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_resetActionPerformed
+
+    private void btn_printdataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_printdataActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_printdataActionPerformed
+
+    private void btn_caridataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_caridataActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_caridataActionPerformed
+
+    private void tx_idtransaksi1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tx_idtransaksi1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tx_idtransaksi1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -400,20 +532,33 @@ public class BarangMasuk extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_caridata;
+    private javax.swing.JButton btn_delete;
     private javax.swing.JButton btn_exit;
+    private javax.swing.JButton btn_idtransaksi;
     private javax.swing.JButton btn_maximize;
     private javax.swing.JButton btn_minimize;
+    private javax.swing.JButton btn_printdata;
+    private javax.swing.JButton btn_reset;
+    private javax.swing.JButton btn_tambahdata;
+    private javax.swing.JButton btn_update;
     private javax.swing.JLabel jLabel1;
     private com.toedter.calendar.JDateChooser jdc_tanggalmasuk;
+    private javax.swing.JTextField tx_barangmasuk;
+    private javax.swing.JTextField tx_caribarang;
     private javax.swing.JTextField tx_gudangbarang;
     private javax.swing.JTextField tx_hargabarang;
     private javax.swing.JTextField tx_idbarang;
+    private javax.swing.JTextField tx_idbarang1;
     private javax.swing.JTextField tx_idtransaksi;
+    private javax.swing.JTextField tx_idtransaksi1;
     private javax.swing.JTextField tx_namabarang;
     private javax.swing.JTextField tx_satuanbarang;
     private javax.swing.JTextField tx_stockbarang;
     private javax.swing.JTextField tx_stockbarangmasuk;
-    private javax.swing.JTextField tx_tanggalmasuk;
+    private javax.swing.JTextField tx_tanggalakhirlbarang;
+    private javax.swing.JTextField tx_tanggalawalbarang;
+    private javax.swing.JTextField tx_totaldata;
     private javax.swing.JTextField tx_totalstockbarang;
     // End of variables declaration//GEN-END:variables
 }
