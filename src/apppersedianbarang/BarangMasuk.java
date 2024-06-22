@@ -248,7 +248,7 @@ public class BarangMasuk extends javax.swing.JFrame {
         getContentPane().add(tx_hargabarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 680, 250, 40));
 
         jLabel1.setBackground(java.awt.Color.lightGray);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bg/BG_Barang Masuk.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bg/2.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 0, -1, -1));
 
         pack();
