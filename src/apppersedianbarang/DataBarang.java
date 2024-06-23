@@ -4,12 +4,23 @@
  */
 package apppersedianbarang;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author LENOVO
  */
 public class DataBarang extends javax.swing.JFrame {
-
+    Connection con;
+    Statement stmt;
+    ResultSet rs;
+    String sql;
     /**
      * Creates new form DataBarang
      */
@@ -17,7 +28,76 @@ public class DataBarang extends javax.swing.JFrame {
     
     public DataBarang() {
         initComponents();
+        
+        koneksi DB = new koneksi();
+        DB.getConnection();
+        con = DB.conn;
+        stmt = DB.stm;
+        
+        TampilDataBarang();
+        TotalDataBarang();
+
     }
+    
+    private void TotalDataBarang(){
+         try{
+                String query = "SELECT COUNT(*) as total FROM tb_databarang;";
+                ResultSet rs = stmt.executeQuery(query);
+
+                if (rs.next()) {
+                    int total_brg = rs.getInt("total");
+                    Txt_LabelTotal.setText(Integer.toString(total_brg));
+                    
+                }
+            }catch (SQLException ex) {
+    System.err.println("Terjadi kesalahan: " + ex.getMessage());
+}
+    }
+    
+    private void ResetTxtBarang(){
+        Txt_IDBarang.setText("");
+        Txt_NamaBarang.setText("");
+        Txt_JenisBarang.setText("");
+        Txt_Satuan.setText("");
+        Txt_Gudang.setText("");
+        Txt_Stok.setText("");
+        Txt_Harga.setText("");
+        Txt_Total.setText("");
+    }
+    
+    private void TampilDataBarang(){
+     try{
+     String query = "SELECT * FROM tb_databarang";
+         rs = stmt.executeQuery(query);
+         DefaultTableModel model = new DefaultTableModel();
+         model.addColumn("id");
+         model.addColumn("Barang");
+         model.addColumn("Jenis");
+         model.addColumn("Satuan");
+         model.addColumn("Gudang");
+         model.addColumn("Stok");
+         model.addColumn("Harga");
+         model.addColumn("TotalBarang");
+
+         while (rs.next()) {
+             Object[] row = new Object[8];
+             row[0] = rs.getString("idbarang");
+             row[1] = rs.getString("NamaBarang");
+             row[2] = rs.getString("JenisBarang");
+             row[3] = rs.getString("Satuan");
+             row[4] = rs.getString("Gudang");
+             row[5] = rs.getInt("Stok");
+             row[6] = rs.getString("Harga");
+             row[7] = rs.getString("TotalHarga");
+
+             model.addRow(row);
+         }
+         TableBarang.setModel(model);
+     } catch (SQLException e) {
+         e.printStackTrace();
+     }
+
+          }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,10 +108,26 @@ public class DataBarang extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TableBarang = new javax.swing.JTable();
         btn_exit = new javax.swing.JButton();
         btn_minimize = new javax.swing.JButton();
         btn_maximize = new javax.swing.JButton();
+        Txt_IDBarang = new javax.swing.JTextField();
+        Txt_NamaBarang = new javax.swing.JTextField();
+        Txt_JenisBarang = new javax.swing.JTextField();
+        Txt_Satuan = new javax.swing.JTextField();
+        Txt_Gudang = new javax.swing.JTextField();
+        Txt_Stok = new javax.swing.JTextField();
+        Txt_Harga = new javax.swing.JTextField();
+        Txt_Total = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        Btn_Delete = new javax.swing.JButton();
+        Btn_Update = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        Txt_LabelTotal = new javax.swing.JTextField();
+        Txt_Search = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -47,8 +143,25 @@ public class DataBarang extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bg/1.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, -1));
+        TableBarang.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        TableBarang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TableBarangMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(TableBarang);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 850, 610));
 
         btn_exit.setBackground(new java.awt.Color(0,0,0,1));
         btn_exit.setBorder(null);
@@ -90,6 +203,69 @@ public class DataBarang extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btn_maximize, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 20, 20, 20));
+        getContentPane().add(Txt_IDBarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 240, 190, -1));
+
+        Txt_NamaBarang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Txt_NamaBarangActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Txt_NamaBarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 300, 170, -1));
+        getContentPane().add(Txt_JenisBarang, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 360, 180, -1));
+        getContentPane().add(Txt_Satuan, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 420, 190, -1));
+        getContentPane().add(Txt_Gudang, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 480, 190, -1));
+        getContentPane().add(Txt_Stok, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 550, 190, -1));
+        getContentPane().add(Txt_Harga, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 610, 180, -1));
+        getContentPane().add(Txt_Total, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 660, 180, -1));
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 740, 180, 30));
+
+        Btn_Delete.setText("Delete");
+        Btn_Delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_DeleteActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Btn_Delete, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, -1, -1));
+
+        Btn_Update.setText("Update");
+        Btn_Update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_UpdateActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Btn_Update, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, -1, -1));
+
+        jButton4.setText("Reset");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, -1, -1));
+
+        Txt_LabelTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Txt_LabelTotalActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Txt_LabelTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
+
+        Txt_Search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Txt_SearchActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Txt_Search, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 110, 300, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bg/BG_Data Barang.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -125,6 +301,134 @@ public class DataBarang extends javax.swing.JFrame {
     int y = evt.getYOnScreen();
     this.setLocation(x - xx, y - xy);
     }//GEN-LAST:event_formMouseDragged
+
+    private void Txt_NamaBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_NamaBarangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Txt_NamaBarangActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      try {
+            String sql = "INSERT INTO tb_databarang (NamaBarang, JenisBarang, Satuan, Gudang, Stok, Harga, TotalHarga) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setString(1, Txt_NamaBarang.getText());
+            statement.setString(2, Txt_JenisBarang.getText());
+            statement.setString(3, Txt_Satuan.getText());
+            statement.setString(4, Txt_Gudang.getText());
+            statement.setString(5,Txt_Stok.getText());
+            statement.setString(6, Txt_Harga.getText());
+            statement.setString(7, Txt_Total.getText());
+            
+            int rowsInserted = statement.executeUpdate();
+            if (rowsInserted > 0) {
+                TampilDataBarang();
+                JOptionPane.showMessageDialog(null, "Data berhasil ditambahkan!");
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Terjadi kesalahan: " + e.getMessage());
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void TableBarangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TableBarangMouseClicked
+    int baris = TableBarang.rowAtPoint(evt.getPoint());
+        
+     if (baris == -1) {
+        System.out.println("Tidak ada baris yang dipilih");
+        return;
+    }
+    
+    String IDBarang = TableBarang.getValueAt(baris,0).toString();
+    
+    String sql = "SELECT * FROM tb_databarang WHERE IDBarang = ?";
+    
+    try (PreparedStatement pstmt = con.prepareStatement(sql)) {
+        pstmt.setString(1, IDBarang);
+        
+        try (ResultSet rs = pstmt.executeQuery()) {
+            if (rs.next()) {
+                System.out.println(rs);
+                
+                ResetTxtBarang();
+
+                Txt_IDBarang.setText(rs.getString("IDBarang"));
+                Txt_NamaBarang.setText(rs.getString("NamaBarang"));
+                Txt_JenisBarang.setText(rs.getString("JenisBarang"));
+                Txt_Satuan.setText(rs.getString("Satuan"));
+                Txt_Gudang.setText(rs.getString("Gudang"));
+                Txt_Stok.setText(String.valueOf(rs.getInt("Stok")));
+                Txt_Harga.setText(rs.getString("Harga"));
+                Txt_Total.setText(rs.getString("TotalHarga"));
+            } else {
+                System.out.println("Data tidak ditemukan");
+            }
+        }
+    } catch (SQLException ex) {
+        System.err.println("Terjadi kesalahan: " + ex.getMessage());
+    }
+
+    }//GEN-LAST:event_TableBarangMouseClicked
+
+    private void Btn_DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_DeleteActionPerformed
+        String NamaBarang = Txt_NamaBarang.getText();
+        try {
+        String sql = "DELETE FROM tb_databarang WHERE IDBarang = ?";
+        String IDBarang = Txt_IDBarang.getText();
+        PreparedStatement statement = con.prepareStatement(sql);
+        statement.setString(1, IDBarang);
+        int result = JOptionPane.showConfirmDialog(null, "Apakah anda yakin ingin menghapus Data Ini? \nNamabarang = " + NamaBarang, "Konfirmasi", JOptionPane.YES_NO_OPTION);
+       
+        boolean userChoice = (result == JOptionPane.YES_OPTION);
+        
+        if(userChoice){
+            int rowsDeleted = statement.executeUpdate();
+                if (rowsDeleted > 0) {
+                    TampilDataBarang();
+                    ResetTxtBarang();
+                    JOptionPane.showMessageDialog(null, "Data berhasil dihapus!");
+                } else {
+                    System.out.println("Data tidak ditemukan.");
+                }
+        }
+    } catch (SQLException e) {
+        System.out.println("Terjadi kesalahan: " + e.getMessage());
+    }
+    }//GEN-LAST:event_Btn_DeleteActionPerformed
+
+    private void Txt_LabelTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_LabelTotalActionPerformed
+   
+    }//GEN-LAST:event_Txt_LabelTotalActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        ResetTxtBarang();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void Btn_UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_UpdateActionPerformed
+         try {
+            String sql = "UPDATE tb_databarang SET NamaBarang = ?, JenisBarang = ?, Satuan = ?, Gudang = ?, Stok = ?, Harga = ?, TotalHarga = ? WHERE IDBarang = ?";
+            PreparedStatement statement = con.prepareStatement(sql);
+            statement.setString(1, Txt_NamaBarang.getText());
+            statement.setString(2, Txt_JenisBarang.getText());
+            statement.setString(3, Txt_Satuan.getText());
+            statement.setString(4, Txt_Gudang.getText());
+            statement.setString(5,Txt_Stok.getText());
+            statement.setString(6, Txt_Harga.getText());
+            statement.setString(7, Txt_Total.getText());
+            statement.setString(8, Txt_IDBarang.getText());
+            
+            int rowsUpdated = statement.executeUpdate();
+            if (rowsUpdated > 0) {
+                 TampilDataBarang();
+                    ResetTxtBarang();
+                    JOptionPane.showMessageDialog(null, "Data berhasil diUpdate!");
+
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Terjadi kesalahan: " + e.getMessage());
+        }
+    }//GEN-LAST:event_Btn_UpdateActionPerformed
+
+    private void Txt_SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_SearchActionPerformed
+        
+    }//GEN-LAST:event_Txt_SearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,9 +466,25 @@ public class DataBarang extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Btn_Delete;
+    private javax.swing.JButton Btn_Update;
+    private javax.swing.JTable TableBarang;
+    private javax.swing.JTextField Txt_Gudang;
+    private javax.swing.JTextField Txt_Harga;
+    private javax.swing.JTextField Txt_IDBarang;
+    private javax.swing.JTextField Txt_JenisBarang;
+    private javax.swing.JTextField Txt_LabelTotal;
+    private javax.swing.JTextField Txt_NamaBarang;
+    private javax.swing.JTextField Txt_Satuan;
+    private javax.swing.JTextField Txt_Search;
+    private javax.swing.JTextField Txt_Stok;
+    private javax.swing.JTextField Txt_Total;
     private javax.swing.JButton btn_exit;
     private javax.swing.JButton btn_maximize;
     private javax.swing.JButton btn_minimize;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
